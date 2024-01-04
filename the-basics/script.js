@@ -69,8 +69,6 @@ console.log(`i have a ${car.make} and it is ${car.year} and it is ${car.conditio
 
 // ARRAY
 
-
-
 let colors = ["Red", "Green", "Blue", "Pink"] 
 
 let random = [ //[] = array
