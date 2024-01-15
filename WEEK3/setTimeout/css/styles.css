@@ -1,0 +1,26 @@
+* {
+    font-size: 16px;
+}
+body {
+    margin: 0;
+}
+.loader {
+    font-size: 3rem;
+    color: purple;
+}
+
+.counter{
+    font-size: 7rem;
+    margin: 0 auto;
+    color:darkolivegreen;
+    
+}
+
+.ad {
+    background-color: orange;
+    padding: 2rem;
+    font-size: 2rem;
+    position: sticky;
+    top: 0;
+
+}
