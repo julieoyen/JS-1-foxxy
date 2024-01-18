@@ -1,13 +1,36 @@
 import productsData from "./data/products.js";
 
-console.log("products: ", productsData);
+
 // 1. select the products container
 const productsContainer = document.querySelector(".products-container");
 
+// I want to get the saved favorite products in the local storage
 
+// const savedFavoriteProducts = window.localStorage.getItem("favorites"); // WE NEED TO PARSE IT
+const savedFavoriteProducts = JSON.parse(window.localStorage.getItem("favorites"));
+console.log("savedFavoriteProducts: ", savedFavoriteProducts) 
+
+// I need to compare the saved array of fav products and the products data i already have
 // 2. fill the container of the products with products
 
+
 for (let i = 0; i < productsData.length; i++) {
+    let cssClass = "";
+   
+   const doesObjectExist = savedFavoriteProducts.find(function(fav){
+        return parseInt(fav.id) === productsData[i].id
+    });
+    console.log("doesObjectExist: ", doesObjectExist)
+
+    if (doesObjectExist){
+        cssClass = "active-heart"
+        console.log("doesObjectExist: ", doesObjectExist)
+
+
+    }
+
+
+
     console.log("Product: ",productsData[i]);
     productsContainer.innerHTML += `
             <div class="product">
@@ -15,7 +38,10 @@ for (let i = 0; i < productsData.length; i++) {
                 <h3>${productsData[i].name}</h3>
                 <h4>NOK ${productsData[i].price}</h4>
                 <span class="heart-container">
-                    <svg class="heart"
+                    <svg class="heart ${cssClass}"
+                    data-name="${productsData[i].name}"
+                    data-id="${productsData[i].id}"
+                    data-price="${productsData[i].price}"
                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                          fill="none"
                          stroke="#000000"
@@ -28,27 +54,36 @@ for (let i = 0; i < productsData.length; i++) {
 }
 
 // 3. check if any of the FAV btns hearts clicked
-const favourites = document.querySelectorAll(".heart");
+const hearts = document.querySelectorAll(".heart");
 
-console.log("favourites: ", favourites);
+console.log("hearts: ", hearts);
 // loop on the dom elements I selected hearts all the elements
 // with class heart
-for (let x = 0; x < favourites.length; x++) {
-    console.log(favourites[x]);
-    favourites[x].addEventListener("click", function (event) {
-        console.log("hey you clicked me i am the heart with index", favourites[x]);
+
+let favsToSave = []                        // why the empty array
+for (let x = 0; x < hearts.length; x++) {
+    console.log(hearts[x]);
+    hearts[x].addEventListener("click", function () {
+        console.log("hey you clicked me i am the heart with index", hearts[x]);
 
         console.log("this.classList: ", this.classList);
         this.classList.toggle("active-heart");
-        // console.log("event", event);
-        // console.log("event", event.target);console.log("event", event);
-        //         // console.log("event", event.target);
-        //         // console.log("event", event.target.classList);
-        // console.log("event", event.target.classList);
-        // event.target.classList.toggle("active-heart");
+
+        console.log("this dataset:", this.dataset)
+
+        let productILikeToSave = {
+            id : this.dataset.id,
+            name : this.dataset.name,
+            price:this.dataset.price
+        }
+        console.log("productILikeToSave: ",productILikeToSave)
+
+        favsToSave.push(productILikeToSave);
+        saveFavs(favsToSave);
     });
 }
 
-// 4. I want to make >>>>this<<<< heart to be red
-// TODO I want to move my clicking event of the fav btn
-// to it's own function instead of the anonymous function
+function saveFavs(favoriteProducts){
+    console.log("favs: ", favoriteProducts)
+    window.localStorage.setItem("favorites", JSON.stringify(favoriteProducts));
+}

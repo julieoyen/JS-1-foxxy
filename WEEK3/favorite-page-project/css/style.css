@@ -53,6 +53,6 @@ h1 {
 }
 
 .active-heart{
-    fill: saddlebrown;
-    stroke: #BADA55;
+    fill: red;
+    stroke: red;
 }
