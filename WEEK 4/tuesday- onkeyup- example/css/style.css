@@ -1,0 +1,66 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+}
+
+main {
+    flex-grow: 1;
+    background-color: #cdaffc;
+}
+
+h1{
+    margin-left: 1rem;
+    
+}
+
+form{
+    background-color: white;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid lightblue;
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+label{
+    color: #6f6f6f;
+
+}
+input[type="text"], [type="password"]{
+    height: 2rem;
+    border-radius: .3rem;
+    
+}
+
+button{
+    padding: .5rem;
+    border-color: black;
+    color: white;
+    border-radius: .3rem;
+    background-color: darkslateblue;
+    outline: transparent;
+    box-shadow: none;
+}
+
+button[disabled]{
+    color: #6f6f6f;
+    border-color: lightgray;
+    background-color: lightgray;
+}
+
+.success{
+    color: darkgreen;
+}
+
+.error{
+    color: orangered;
+}
