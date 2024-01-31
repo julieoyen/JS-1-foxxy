@@ -1,11 +1,11 @@
 // #REGION FUNCTION TYPES
 
-function doSomething() {
-    console.log("I just do something -> void");
-    console.log("I just do something -> void");
-    console.log("I just do something -> void")
-    console.log("I just do something -> void")
-    console.log("I just do something -> void")
+// function doSomething() {
+//     console.log("I just do something -> void");
+//     console.log("I just do something -> void");
+//     console.log("I just do something -> void")
+//     console.log("I just do something -> void")
+//     console.log("I just do something -> void")
     
 
 
@@ -13,13 +13,13 @@ function doSomething() {
 
 
 
-    console.log("I just do something -> void")
-    console.log("I just do something -> void")
-    console.log("I just do something -> void")
-    console.log("I just do something -> void")
-}
+//     console.log("I just do something -> void")
+//     console.log("I just do something -> void")
+//     console.log("I just do something -> void")
+//     console.log("I just do something -> void")
+// }
 
-// // Void
+// Void
 // doSomething()
 
 
@@ -48,5 +48,38 @@ function doSomething() {
 
 // let result2 = doSomethingReturnsASomething("ikke sant?")
 // console.log(result2)
+
 // #ENDREGION
+ 
+
+// #region HOF and Callbacks
+
+//High order function
+// function doSomething(someParam) {
+//     console.log("do something -> void");
+//     console.log("do something -> void");
+//     console.log("do something -> void");
+
+    
+
+    
+//     someParam()
+
+
+
+//     console.log("I do something");
+//     console.log("I do something");
+//     console.log("I do something");
+// }
+
+// doSomething(function(){console.log("I am callback")})
+
+//#endregion
+
+
+// #region fetch
+
+fetch('https://catfact.ninja/facts',(response) => {
+console.log(response);
+});
 
