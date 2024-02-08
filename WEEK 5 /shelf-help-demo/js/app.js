@@ -1,57 +1,86 @@
-const bookListDiv = document.getElementById('book-list')
-let bookData = []
+// Need the shelf help JSON server to be running on http://localhost:3000
 
+localStorage.setItem("message", " I just stored something in localStorage");
+
+// how do i access it the local storage
+// in console.log
+
+console.log(localStorage.getItem("message"));
+
+// if i want to clear the local storage
+localStorage.clear();
+
+// session storage clears itself out after you close
+sessionStorage.setItem("message", " I just stored something in localStorage");
+
+const bookListDiv = document.getElementById("book-list");
+const filterButton = document.getElementById("btnfilter");
+
+filterButton.addEventListener("click", filterByAuthor);
+
+let bookData = [];
 
 // fetch the book data
 
-// fetch('http://localhost:3000/books/1') // (ADD URL)
-// .then( (response) => response.json())                     
-//     .then((bookResultData ) => {
-//         bookData = bookResultData;
+fetch("http://localhost:3000/books")
+  .then((response) => response.json())
+  .then((bookResultData) => {
+    bookData = bookResultData;
+    for (const book of bookData) {
+      displayBook(book);
+    }
+  });
 
-//         for(const book of bookData){   
-//             displayBook(book)
-//         }
+function displayBook(book) {}
 
-//         // bookData.forEach(book => {       same as above, just different syntax
-//         //     console.log(book.title)
+function displayBook(book) {
+  const bookDiv = document.createElement("div");
+  const bookTitleParagraph = document.createElement("p");
+  const bookImg = document.createElement("img");
+  const bookAuthor = document.createElement("author");
 
-//         });  
-              
+  bookImg.src = `http://localhost:3000/assets/images/${book.coverImg}`;
+  bookImg.alt = "a picture of a book";
 
-        fetch("http://localhost:3000/books")
-          .then((response) => response.json())
-          .then((bookResultData) => {
-            bookData = bookResultData;
-            for (const book of bookData) {
-              displayBook(book)}})
+  bookAuthor.innerText = book.author;
+  bookTitleParagraph.innerText = book.title;
 
-// document.createElement()
+  bookDiv.appendChild(bookImg);
+  bookDiv.appendChild(bookTitleParagraph);
+  bookDiv.appendChild(bookAuthor);
+  bookListDiv.appendChild(bookDiv);
+}
 
-//dowhile or while loop if you dont know the length of loop 
-// for each loop is used for collections
+// //example
+// let chair = {
+//     color: "Grey",
+//     height: 67,
+//     swivel(){
+//         console.log("That chair totally swivelled")
+//     }
+// }
 
-// will make it easier to swap out everytime you use it with a function
-function displayBook(book){
-    const bookDiv = document.createElement('div');
-    const bookTitleParagraph = document.createElement('p');
-    const bookImg = document.createElement("img");
-    bookImg.src = 'http://localhost:3000/assets/images/${book.coverImg}'
-    bookImg.alt = "a picture of a book"
-    bookDiv.appendChild(bookImg)
-    bookTitleParagraph.innerText = book.title;
-    bookDiv.appendChild(bookTitleParagraph);
-    bookListDiv.appendChild(bookDiv);}
+// chair.swivel()
 
+// ANOTHER EXAMPLE
 
-// function displayBook(book) {
-//     const bookDiv = document.createElement("div");
-//     const bookTitlePara = document.createElement("p");
-//     bookTitleParagraph.innerText = book.title;
-//     const bookImg = document.createElement("img");
-//     bookImg.src = `http://localhost:3000/assets/images/${book.coverImg}`
-//     bookImg.alt = "a picture of a book"
-//     bookDiv.appendChild(bookImg)
-//     bookDiv.appendChild(bookTitlePara);
-//     bookListDiv.appendChild(bookDiv);
-//   }
+// let jsonBook = // add json
+
+// //converts JSON to a JS object
+// let bookJSObject = JSON.parse(jsonBook);
+
+// //makes it into json again
+
+// let jsonBook = JSON.stringify(bookJSObject)
+
+function filterByAuthor(authorToFilterBy) {
+  console.log("works");
+}
+
+//filter array
+
+let filteredResults = [];
+
+for (const book of bookData) {
+  if (book.author === authorToFilterBy) filteredResults.push(book);
+}
