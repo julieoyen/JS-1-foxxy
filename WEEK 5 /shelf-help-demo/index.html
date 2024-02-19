@@ -2,15 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="js/app.js" defer></script>
     <title>Shelf Help</title>
+    <script
+      src="/WEEK 5 /shelf-help-demo/js/app.js"
+      defer
+      type="module"
+    ></script>
+    <style>
+      img {
+        width: 250px;
+      }
+    </style>
   </head>
   <body>
-    <!--- display our -->
-    <button id="btnfilter">filter</button>
+    <nav>
+      <a href="./pages/collection.html">My Collection</a>
+    </nav>
+
+    <!-- Display our book options -->
+    <button id="btnFilter">Filter</button>
+    <button id="btnReset">Reset</button>
+    <select id="authorList">
+      <option value="default" disabled selected>Select your author</option>
+    </select>
+
+    <div id="loader">
+      <h3>...loading</h3>
+    </div>
     <div id="book-list"></div>
+    <div id="pageButtons"></div>
   </body>
 </html>
